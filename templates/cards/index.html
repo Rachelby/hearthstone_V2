@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}HearthStonge{% endblock %}
+{% block content %}
+	
+	<h1>Liste de cartes</h1>
+	{% if user.is_authenticated %}
+		{% if cards_list %}
+		<table class="table table-bordered">
+			{% for card in cards_list %}
+				{% if card.active %}
+					<tr class="table-secondary">
+						<td class="striker">{{ card.name }}</td>
+						<td><center><a href="#">Modifier</a></center></td>
+						<td><center><a href="#">Activer</a></center></td>
+						<td><center><a href="#">Supprimer</a></center></td>
+					</tr>
+				{% else %}
+					<tr>
+						<td>{{ card.name }}</td>
+						<td><center><a href="#">Modifier</a></center></td>
+						<td><center><a href="#">Désactiver</a></center></td>
+						<td><center><a href="#">Supprimer</a></center></td>
+					</tr>
+				{% endif %}
+			{% endfor%}
+		</table>
+		{% endif %}
+	{% else %}
+		<h2>You need to login for navgating list of Cards</h2>
+	{% endif %}
+	
+{% endblock %}
